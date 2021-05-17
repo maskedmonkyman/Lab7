@@ -42,16 +42,7 @@ router.setState = function(entryObj=null) {
 
   console.log(entryObj);
 
-  if (location.pathname == "/")
-  {
-    pageTitle = "Journal Entries";
-  }
-  else if (location.pathname == "/settings")
-  {
-    pageTitle = "Settings";
-    bodyClass = "settings";
-  }
-  else
+  if (location.pathname.includes("entry"))
   {
     entryPage.shadowRoot.querySelectorAll(".entry-image").forEach(element => element.remove());
     entryPage.shadowRoot.querySelectorAll(".entry-audio").forEach(element => element.remove());
@@ -60,6 +51,15 @@ router.setState = function(entryObj=null) {
     bodyClass = "single-entry";
     entryPage.entry = entryObj.entry;
     entryPage.index = entryObj.entryIndex;
+  }
+  else if (location.pathname.includes("settings"))
+  {
+    pageTitle = "Settings";
+    bodyClass = "settings";
+  }
+  else
+  {
+    pageTitle = "Journal Entries";
   }
   
   document.body.className = bodyClass;
