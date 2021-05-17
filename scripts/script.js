@@ -26,17 +26,14 @@ settingsButton.onclick = () => {history.pushState((getEntryPageState()), null, "
 
 // Make sure you register your service worker here too
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
+  window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
-      // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }, function(err) {
-      // registration failed :(
+    }, err => {
       console.log('ServiceWorker registration failed: ', err);
     });
   });
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('https://cse110lab6.herokuapp.com/entries')
